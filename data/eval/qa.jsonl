@@ -1,0 +1,4 @@
+{"question": "How do solar panels generate electricity?", "relevant_chunk_ids": ["solar.md:0"]}
+{"question": "What do wind turbines convert into electricity?", "relevant_chunk_ids": ["wind.md:0"]}
+{"question": "How does a hydroelectric dam produce power?", "relevant_chunk_ids": ["hydro.md:0"]}
+{"question": "Which energy sources are renewable?", "relevant_chunk_ids": ["solar.md:0", "wind.md:0", "hydro.md:0"]}
