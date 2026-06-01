@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- ragline project-specific additions ---
+
+# Persisted vector index / embedding artifacts produced at runtime
+/index/
+*.npy
+*.npz
+
+# Local environment overrides (e.g. an API key for the optional provider)
+.env
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
