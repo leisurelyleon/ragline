@@ -26,8 +26,8 @@ def test_chunks_cover_and_overlap() -> None:
     text = "abcdefghij"  # 10 chars
     doc = Document(doc_id="d", text=text)
     chunks = chunk_document(doc, chunk_size=4, overlap=2)
-    # step = 2: starts at 0,2,4,6,8
-    assert [c.text for c in chunks] == ["abcd", "cdef", "efgh", "ghij", "ij"]
+    # step = 2: starts at 0,2,4,6 (start 6 -> "ghij" reaches the end, loop stops)
+    assert [c.text for c in chunks] == ["abcd", "cdef", "efgh", "ghij"]
     # consecutive chunks share `overlap` characters
     assert chunks[0].text[-2:] == chunks[1].text[:2]
 
