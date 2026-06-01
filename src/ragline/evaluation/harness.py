@@ -65,9 +65,7 @@ def load_dataset(path: Path) -> list[EvalExample]:
             relevant = record.get("relevant_chunk_ids")
             if not isinstance(question, str) or not isinstance(relevant, list):
                 raise ValueError(f"malformed example on line {line_no}")
-            examples.append(
-                EvalExample(question=question, relevant_chunk_ids=set(relevant))
-            )
+            examples.append(EvalExample(question=question, relevant_chunk_ids=set(relevant)))
     return examples
 
 

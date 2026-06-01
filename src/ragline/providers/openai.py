@@ -17,7 +17,7 @@ try:
     from openai import OpenAI
 except ImportError as exc:  # pragma: no cover - only hit without the extra
     raise ImportError(
-        'The OpenAI provider requires the optional dependency. Install with: '
+        "The OpenAI provider requires the optional dependency. Install with: "
         'pip install "ragline[openai]"'
     ) from exc
 

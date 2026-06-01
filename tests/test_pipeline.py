@@ -19,12 +19,21 @@ def _pipeline() -> Pipeline:
 
 def _corpus() -> list[Document]:
     return [
-        Document(doc_id="solar.md", text="Solar panels convert sunlight into electricity "
-                 "using photovoltaic cells made of silicon."),
-        Document(doc_id="wind.md", text="Wind turbines convert the kinetic energy of moving "
-                 "air into electricity using large rotating blades."),
-        Document(doc_id="hydro.md", text="Hydroelectric dams convert the energy of falling "
-                 "water into electricity by spinning turbines."),
+        Document(
+            doc_id="solar.md",
+            text="Solar panels convert sunlight into electricity "
+            "using photovoltaic cells made of silicon.",
+        ),
+        Document(
+            doc_id="wind.md",
+            text="Wind turbines convert the kinetic energy of moving "
+            "air into electricity using large rotating blades.",
+        ),
+        Document(
+            doc_id="hydro.md",
+            text="Hydroelectric dams convert the energy of falling "
+            "water into electricity by spinning turbines.",
+        ),
     ]
 
 

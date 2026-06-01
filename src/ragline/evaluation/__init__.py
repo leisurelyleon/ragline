@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from ragline.evaluation.harness import EvaluationReport, EvalExample, evaluate, load_dataset
+from ragline.evaluation.harness import EvalExample, EvaluationReport, evaluate, load_dataset
 from ragline.evaluation.metrics import (
     faithfulness,
     mean_reciprocal_rank,

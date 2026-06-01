@@ -14,12 +14,15 @@ from ragline.providers.local import HashEmbedder, TemplateGenerator
 
 
 def _ingested_pipeline() -> Pipeline:
-    pipeline = Pipeline(HashEmbedder(dimension=256), TemplateGenerator(), chunk_size=200,
-                        overlap=40, top_k=3)
-    pipeline.ingest([
-        Document(doc_id="solar.md", text="Solar panels convert sunlight into electricity."),
-        Document(doc_id="wind.md", text="Wind turbines convert moving air into electricity."),
-    ])
+    pipeline = Pipeline(
+        HashEmbedder(dimension=256), TemplateGenerator(), chunk_size=200, overlap=40, top_k=3
+    )
+    pipeline.ingest(
+        [
+            Document(doc_id="solar.md", text="Solar panels convert sunlight into electricity."),
+            Document(doc_id="wind.md", text="Wind turbines convert moving air into electricity."),
+        ]
+    )
     return pipeline
 
 
@@ -66,9 +69,7 @@ def test_load_dataset_roundtrip(tmp_path: Path) -> None:
 
 def test_load_dataset_skips_blank_lines(tmp_path: Path) -> None:
     path = tmp_path / "qa.jsonl"
-    path.write_text(
-        '{"question": "q", "relevant_chunk_ids": ["x:0"]}\n\n\n', encoding="utf-8"
-    )
+    path.write_text('{"question": "q", "relevant_chunk_ids": ["x:0"]}\n\n\n', encoding="utf-8")
     assert len(load_dataset(path)) == 1
 
 
