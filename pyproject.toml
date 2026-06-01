@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ragline"
+version = "0.1.0"
+description = "A retrieval-augmented generation pipeline with a rigorous offline evaluation harness."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Joseph Edwards", email = "josephleonedwards@gmail.com" }]
+
+# The only runtime dependency is NumPy (the vector store math).
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# The real LLM provider is OPTIONAL: nothing in build/test/demo needs it.
+openai = ["openai>=1.0"]
+# Development tooling.
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "black>=24.0",
+]
+
+[project.scripts]
+ragline = "ragline.cli:main"
+
+# --- src-layout package discovery ---
+# The package lives under src/, so setuptools must look there. Without this,
+# `pip install -e .` would not find the `ragline` package.
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# --- Black (formatting) ---
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+# --- Ruff (linting) ---
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+# E/F: pyflakes+pycodestyle, I: import sorting, B: bugbear,
+# UP: pyupgrade, SIM: simplify, RUF: ruff-specific.
+
+# --- mypy (type checking) ---
+[tool.mypy]
+python_version = "3.10"
+mypy_path = "src"
+packages = ["ragline"]
+strict = true
+warn_unused_configs = true
+# NumPy ships its own types; third-party optional providers may not.
+[[tool.mypy.overrides]]
+module = ["openai.*"]
+ignore_missing_imports = true
+
+# --- pytest ---
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra -q"
